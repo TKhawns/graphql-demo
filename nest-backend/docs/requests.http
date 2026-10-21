@@ -1,0 +1,30 @@
+### List products (GraphQL)
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{ "query": "{ products { id name price stock category } }" }
+
+### Get product by id (GraphQL)
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{ "query": "query($id:Int!){ product(id:$id){ id name description price stock category createdAt updatedAt } }", "variables": { "id": 1 } }
+
+### Create product (GraphQL)
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{ "query": "mutation($input:CreateProductInput!){ createProduct(input:$input){ id name price stock } }", "variables": { "input": { "name": "Wireless Mouse", "description": "Ergonomic wireless mouse", "price": 29.99, "stock": 100, "category": "Electronics" } } }
+
+### Update product (GraphQL)
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{ "query": "mutation{ updateProduct(id:1, input:{ price: 24.99, stock: 80 }){ id name price stock updatedAt } }" }
+
+### Delete product (GraphQL)
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{ "query": "mutation{ deleteProduct(id:1) }" }
+
